@@ -4,97 +4,74 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Birthday Adventure</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <style>
         body {
             margin: 0;
-            padding: 0;
-            background: url('anime-sky.jpg') no-repeat center center/cover;
-            font-family: 'Arial', sans-serif;
-            color: white;
-            text-align: center;
             overflow: hidden;
+            background: linear-gradient(to bottom, #87CEFA, #fefefe);
+            text-align: center;
         }
-        .container {
+        #scene {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+        }
+        .item {
+            position: absolute;
+            cursor: pointer;
+        }
+        #cake {
+            width: 150px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #balloons {
+            width: 100px;
+            top: 80%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        #giftBox {
+            width: 120px;
+            top: 90%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: none;
+        }
+        #message {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 80%;
-        }
-        .message {
             font-size: 2em;
-            opacity: 0;
-            transition: opacity 2s;
+            color: #ff4081;
+            font-weight: bold;
             display: none;
-        }
-        .visible {
-            opacity: 1;
-            display: block;
-        }
-        .option {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            padding: 10px;
-            font-size: 1.5em;
-            margin: 10px;
-            cursor: pointer;
-            border-radius: 10px;
-        }
-        .option:hover {
-            background: rgba(255, 255, 255, 0.4);
-        }
-        #balloon {
-            position: absolute;
-            bottom: -100px;
-            left: 50%;
-            width: 100px;
-            animation: float 6s linear infinite;
-        }
-        @keyframes float {
-            0% { transform: translate(-50%, 0); }
-            50% { transform: translate(-50%, -200px); }
-            100% { transform: translate(-50%, 0); }
         }
     </style>
 </head>
 <body>
-    <audio id="bg-music" loop>
-        <source src="mere-sohneya.mp3" type="audio/mp3">
-    </audio>
-    <div class="container">
-        <img id="balloon" src="balloon.png" alt="Balloon">
-        <p class="message visible" id="intro">Welcome to a magical birthday journey...</p>
-        <p class="message" id="question1">If you could travel anywhere, where would you go?</p>
-        <button class="option" onclick="nextStep(2)">Paris</button>
-        <button class="option" onclick="nextStep(2)">Japan</button>
-        <button class="option" onclick="nextStep(2)">Space</button>
-        <p class="message" id="question2">What’s your dream way to spend a birthday?</p>
-        <button class="option" onclick="nextStep(3)">Adventure</button>
-        <button class="option" onclick="nextStep(3)">Relaxation</button>
-        <button class="option" onclick="nextStep(3)">Party</button>
-        <p class="message" id="wish">Happy Birthday! Today is all about celebrating you—your kindness, your depth, and the way you make life brighter just by being in it...</p>
+    <div id="scene">
+        <img id="cake" class="item" src="https://i.imgur.com/A6p1YyR.png" alt="Birthday Cake">
+        <img id="balloons" class="item" src="https://i.imgur.com/6K4ZJfJ.png" alt="Balloons">
+        <img id="giftBox" class="item" src="https://i.imgur.com/X9YxuQ6.png" alt="Gift Box">
+        <div id="message">Happy Birthday! 🎉</div>
     </div>
     <script>
-        let step = 1;
-        document.getElementById("bg-music").volume = 0.3;
-        document.getElementById("bg-music").play();
-        function nextStep(next) {
-            document.getElementById(`question${step}`).classList.remove('visible');
-            document.getElementById(`question${step}`).style.display = 'none';
-            document.getElementById(`question${next}`).classList.add('visible');
-            document.getElementById(`question${next}`).style.display = 'block';
-            step = next;
-            if (step === 3) {
-                setTimeout(() => {
-                    document.getElementById("wish").classList.add('visible');
-                    document.getElementById("wish").style.display = 'block';
-                }, 3000);
-            }
-        }
-        setTimeout(() => {
-            document.getElementById("intro").classList.add('visible');
-        }, 1000);
+        gsap.to("#cake", { y: -150, duration: 2, repeat: -1, yoyo: true });
+        document.getElementById("cake").addEventListener("click", function() {
+            gsap.to("#cake", { scale: 0, duration: 1 });
+            gsap.to("#balloons", { y: -600, duration: 3, onComplete: function() {
+                document.getElementById("giftBox").style.display = "block";
+            }});
+        });
+        document.getElementById("giftBox").addEventListener("click", function() {
+            gsap.to("#giftBox", { scale: 0, duration: 1 });
+            document.getElementById("message").style.display = "block";
+            gsap.fromTo("#message", { scale: 0 }, { scale: 1, duration: 1, ease: "elastic.out(1, 0.5)" });
+        });
     </script>
 </body>
 </html>
