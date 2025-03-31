@@ -5,35 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday!</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
+        
         body {
-            background-color: #f5f5f5;
+            background: linear-gradient(135deg, #1E3D59, #A27B5C, #F5F5F5);
             text-align: center;
             font-family: 'Poppins', sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
             overflow: hidden;
-            color: #333;
+            position: relative;
         }
+        
         h1 {
-            font-size: 3rem;
-            color: #444;
-            animation: fadeIn 2s ease-in-out;
+            font-family: 'Great Vibes', cursive;
+            font-size: 4rem;
+            color: #F5F5F5;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 3s ease-in-out;
         }
-        .message {
-            font-size: 1.2rem;
+        
+        .message, .question-box {
+            font-size: 1.4rem;
             width: 80%;
-            max-width: 600px;
+            max-width: 700px;
             margin: 20px auto;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
+        
         .hidden {
             opacity: 0;
             transform: translateY(10px);
         }
+        
         .fade-in {
-            animation: fadeInUp 1.5s ease-out forwards;
+            animation: fadeInUp 3s ease-out forwards;
         }
+        
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -44,30 +61,75 @@
                 transform: translateY(0);
             }
         }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        
+        .question-box button {
+            background-color: #A27B5C;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .question-box button:hover {
+            background-color: #815C46;
         }
     </style>
 </head>
 <body>
-    <h1>🎉 Happy Birthday, My Dear Friend! 🎈</h1>
-    <div class="message">
-        <p class="hidden">Happy Birthday! Today is all about celebrating you—your kindness, your depth, and the way you make life brighter just by being in it.</p>
-        <p class="hidden">You have a way of understanding people that’s rare, of making even the most ordinary moments feel special.</p>
-        <p class="hidden">I hope this year brings you all the joy, growth, and success you deserve.</p>
-        <p class="hidden">You mean more to the people around you than you realize, and I’m grateful to know you.</p>
-        <p class="hidden">Wishing you a day as amazing as you are!</p>
+    <h1>Happy Birthday!</h1>
+    
+    <div class="message hidden">
+        <p>Happy Birthday! Today is all about celebrating you—your kindness, your depth, and the way you make life brighter just by being in it.</p>
+        <p>You have a way of understanding people that’s rare, of making even the most ordinary moments feel special.</p>
+        <p>I hope this year brings you all the joy, growth, and success you deserve.</p>
+        <p>You mean more to the people around you than you realize, and I’m grateful to know you.</p>
+        <p>Wishing you a day as amazing as you are!</p>
     </div>
+    
+    <div class="question-box hidden">
+        <p>Pick one: If you could have a superpower, which would it be?</p>
+        <button onclick="showReply('Mind Reading')">Mind Reading</button>
+        <button onclick="showReply('Time Travel')">Time Travel</button>
+        <button onclick="showReply('Invisibility')">Invisibility</button>
+        <button onclick="showReply('Flying')">Flying</button>
+        <p id="response"></p>
+    </div>
+    
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const paragraphs = document.querySelectorAll(".hidden");
-            paragraphs.forEach((p, index) => {
+            const elements = document.querySelectorAll(".hidden");
+            const totalDuration = 300000; // 5 minutes
+            const delay = totalDuration / elements.length; 
+            
+            elements.forEach((el, index) => {
                 setTimeout(() => {
-                    p.classList.add("fade-in");
-                }, index * 2000);
+                    el.classList.add("fade-in");
+                }, index * delay); 
             });
         });
+
+        function showReply(choice) {
+            let response = "";
+            switch (choice) {
+                case "Mind Reading":
+                    response = "You’d know exactly what I’m thinking about you right now… 😉";
+                    break;
+                case "Time Travel":
+                    response = "I’d travel back in time just to relive all the moments with you again!";
+                    break;
+                case "Invisibility":
+                    response = "Perfect for sneaking extra cake at your birthday party! 🍰";
+                    break;
+                case "Flying":
+                    response = "You’d soar high—just like you do in everything you take on!";
+                    break;
+            }
+            document.getElementById("response").innerText = response;
+        }
     </script>
 </body>
 </html>
