@@ -6,17 +6,27 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1e3c72, #2a5298, #8B4513, #000000, #FFFFFF);
+            background: linear-gradient(135deg, #1e3c72, #ffffff, #8B4513, #000000);
             color: white;
             text-align: center;
             padding: 50px;
             overflow-y: auto;
             height: 100vh;
+            position: relative;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            display: inline-block;
+            animation: fadeIn 3s;
         }
         h1 {
             font-size: 60px;
             font-family: 'Courier New', Courier, monospace;
             animation: fadeIn 2s;
+            color: #ffcc00;
         }
         .content {
             margin-top: 20px;
@@ -25,7 +35,23 @@
             margin-left: auto;
             margin-right: auto;
             opacity: 0;
-            animation: fadeIn 3s forwards 2s;
+            animation: fadeIn 3s forwards 10s;
+        }
+        .decorations {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .decorations div {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.8);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            animation: float 5s infinite;
         }
         .question-container {
             margin-top: 30px;
@@ -48,25 +74,37 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+        @keyframes float {
+            from { transform: translateY(0); }
+            to { transform: translateY(-20px); }
+        }
     </style>
 </head>
 <body>
+    <audio autoplay loop>
+        <source src="mere_sohneya.mp3" type="audio/mp3">
+    </audio><div class="decorations">
+    <div style="top: 10%; left: 20%;"></div>
+    <div style="top: 30%; left: 50%;"></div>
+    <div style="top: 50%; left: 70%;"></div>
+</div>
+
+<div class="card">
     <h1>Happy Birthday!</h1>
     <div class="content">
         <p>Today is all about celebrating you—your kindness, your depth, and the way you make life brighter just by being in it.</p>
-        <p>Now, let’s have a little fun with some questions!</p>
-    </div><div class="question-container" id="questions"></div>
+        <p>You have a way of understanding people that’s rare, of making even the most ordinary moments feel special. I hope this year brings you all the joy, growth, and success you deserve.</p>
+        <p>You mean more to the people around you than you realize, and I’m grateful to know you. Wishing you a day as amazing as you are!</p>
+    </div>
+</div>
+
+<div class="question-container" id="questions"></div>
 
 <script>
     const questions = [
         {
             text: "If you could live with just one of these qualities, which would you choose?",
-            options: [
-                "Wisdom",
-                "Kindness",
-                "Confidence",
-                "Creativity"
-            ],
+            options: ["Wisdom", "Kindness", "Confidence", "Creativity"],
             replies: [
                 "A thinker, a philosopher—would you trade warmth for insight?",
                 "A rare heart in a tough world. Never change.",
@@ -87,21 +125,6 @@
                 "You don’t just enter a room—you ignite it.",
                 "A fresh breeze in a crowded space. Unexpected but unforgettable.",
                 "You feel like home, but with a little something extra."
-            ]
-        },
-        {
-            text: "Where would you time-travel first if you could?",
-            options: [
-                "The past – to relive or change something",
-                "The future – to see what becomes of you",
-                "An alternate universe – to see what ‘another you’ is like",
-                "Nowhere – the present is where the magic is"
-            ],
-            replies: [
-                "A heart with unfinished stories. Do you seek closure or change?",
-                "Curious, ambitious, maybe a little impatient. The best is yet to come.",
-                "A dreamer, always wondering 'what if'—or maybe a believer in destiny?",
-                "Rare. A soul content with the now. You’re exactly where you’re meant to be."
             ]
         }
     ];
@@ -127,7 +150,7 @@
             document.getElementById('questions').innerHTML = '<p>That was fun! Hope this made your day a little more special.</p>';
         }
     }
-    setTimeout(displayNextQuestion, 5000);
+    setTimeout(displayNextQuestion, 10000);
 </script>
 
 </body>
