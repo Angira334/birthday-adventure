@@ -1,78 +1,59 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Adventure</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <title>Happy Birthday!</title>
     <style>
         body {
-            margin: 0;
-            overflow: hidden;
-            background: linear-gradient(to bottom, #87CEFA, #fefefe);
+            background-color: #ffccff;
             text-align: center;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
         }
-        #scene {
-            position: relative;
-            width: 100vw;
-            height: 100vh;
+        h1 {
+            font-size: 3rem;
+            color: #ff0080;
+            animation: bounce 2s infinite;
         }
-        .item {
+        p {
+            font-size: 1.5rem;
+            color: #660066;
+        }
+        .balloon {
             position: absolute;
-            cursor: pointer;
-        }
-        #cake {
-            width: 150px;
-            top: 50%;
+            width: 50px;
+            height: 70px;
+            background-color: red;
+            border-radius: 50%;
+            top: 100%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            animation: floatUp 6s linear infinite;
         }
-        #balloons {
-            width: 100px;
-            top: 80%;
-            left: 50%;
-            transform: translateX(-50%);
+        @keyframes floatUp {
+            0% { top: 100%; opacity: 0; }
+            50% { opacity: 1; }
+            100% { top: -10%; opacity: 0; }
         }
-        #giftBox {
-            width: 120px;
-            top: 90%;
-            left: 50%;
-            transform: translateX(-50%);
-            display: none;
-        }
-        #message {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 2em;
-            color: #ff4081;
-            font-weight: bold;
-            display: none;
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
     </style>
 </head>
 <body>
-    <div id="scene">
-        <img id="cake" class="item" src="https://i.imgur.com/A6p1YyR.png" alt="Birthday Cake">
-        <img id="balloons" class="item" src="https://i.imgur.com/6K4ZJfJ.png" alt="Balloons">
-        <img id="giftBox" class="item" src="https://i.imgur.com/X9YxuQ6.png" alt="Gift Box">
-        <div id="message">Happy Birthday! 🎉</div>
-    </div>
+    <h1>🎉 Happy Birthday, My Dear Friend! 🎈</h1>
+    <p>Wishing you a day filled with love, laughter, and unforgettable moments! 🥳</p>
+    <p>May this year bring you happiness, success, and endless adventures! 💖</p>
     <script>
-        gsap.to("#cake", { y: -150, duration: 2, repeat: -1, yoyo: true });
-        document.getElementById("cake").addEventListener("click", function() {
-            gsap.to("#cake", { scale: 0, duration: 1 });
-            gsap.to("#balloons", { y: -600, duration: 3, onComplete: function() {
-                document.getElementById("giftBox").style.display = "block";
-            }});
-        });
-        document.getElementById("giftBox").addEventListener("click", function() {
-            gsap.to("#giftBox", { scale: 0, duration: 1 });
-            document.getElementById("message").style.display = "block";
-            gsap.fromTo("#message", { scale: 0 }, { scale: 1, duration: 1, ease: "elastic.out(1, 0.5)" });
-        });
+        function createBalloon() {
+            let balloon = document.createElement("div");
+            balloon.classList.add("balloon");
+            balloon.style.left = Math.random() * window.innerWidth + "px";
+            balloon.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+            document.body.appendChild(balloon);
+            setTimeout(() => { balloon.remove(); }, 6000);
+        }
+        setInterval(createBalloon, 500);
     </script>
 </body>
 </html>
-
