@@ -1,135 +1,133 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Birthday!</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
-        
         body {
-            background: linear-gradient(135deg, #1E3D59, #A27B5C, #F5F5F5);
-            text-align: center;
-            font-family: 'Poppins', sans-serif;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        h1 {
-            font-family: 'Great Vibes', cursive;
-            font-size: 4rem;
-            color: #F5F5F5;
-            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-            animation: fadeIn 3s ease-in-out;
-        }
-        
-        .message, .question-box {
-            font-size: 1.4rem;
-            width: 80%;
-            max-width: 700px;
-            margin: 20px auto;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        
-        .hidden {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        
-        .fade-in {
-            animation: fadeInUp 3s ease-out forwards;
-        }
-        
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .question-box button {
-            background-color: #A27B5C;
-            border: none;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
             color: white;
+            text-align: center;
+            padding: 50px;
+            overflow: hidden;
+        }
+        h1 {
+            font-size: 60px;
+            font-family: 'Courier New', Courier, monospace;
+            animation: fadeIn 2s;
+        }
+        .content {
+            margin-top: 20px;
+            font-size: 20px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: fadeIn 3s forwards 2s;
+        }
+        .question-container {
+            margin-top: 30px;
+            display: none;
+            animation: fadeIn 2s;
+        }
+        button {
+            background: #ffcc00;
+            border: none;
             padding: 10px 20px;
             margin: 10px;
-            font-size: 1rem;
-            border-radius: 5px;
+            font-size: 18px;
             cursor: pointer;
-            transition: 0.3s;
+            border-radius: 5px;
         }
-        
-        .question-box button:hover {
-            background-color: #815C46;
+        button:hover {
+            background: #ffdd44;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
 <body>
     <h1>Happy Birthday!</h1>
-    
-    <div class="message hidden">
-        <p>Happy Birthday! Today is all about celebrating you—your kindness, your depth, and the way you make life brighter just by being in it.</p>
-        <p>You have a way of understanding people that’s rare, of making even the most ordinary moments feel special.</p>
-        <p>I hope this year brings you all the joy, growth, and success you deserve.</p>
-        <p>You mean more to the people around you than you realize, and I’m grateful to know you.</p>
-        <p>Wishing you a day as amazing as you are!</p>
-    </div>
-    
-    <div class="question-box hidden">
-        <p>Pick one: If you could have a superpower, which would it be?</p>
-        <button onclick="showReply('Mind Reading')">Mind Reading</button>
-        <button onclick="showReply('Time Travel')">Time Travel</button>
-        <button onclick="showReply('Invisibility')">Invisibility</button>
-        <button onclick="showReply('Flying')">Flying</button>
-        <p id="response"></p>
-    </div>
-    
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const elements = document.querySelectorAll(".hidden");
-            const totalDuration = 300000; // 5 minutes
-            const delay = totalDuration / elements.length; 
-            
-            elements.forEach((el, index) => {
-                setTimeout(() => {
-                    el.classList.add("fade-in");
-                }, index * delay); 
-            });
-        });
+    <div class="content">
+        <p>Today is all about celebrating you—your kindness, your depth, and the way you make life brighter just by being in it.</p>
+        <p>Now, let’s have a little fun with some questions!</p>
+    </div><div class="question-container" id="questions"></div>
 
-        function showReply(choice) {
-            let response = "";
-            switch (choice) {
-                case "Mind Reading":
-                    response = "You’d know exactly what I’m thinking about you right now… ";
-                    break;
-                case "Time Travel":
-                    response = "I’d travel back in time just to relive all the moments with you again!";
-                    break;
-                case "Invisibility":
-                    response = "Perfect for sneaking extra cake at your birthday party! 🍰";
-                    break;
-                case "Flying":
-                    response = "You’d soar high—just like you do in everything you take on!";
-                    break;
-            }
-            document.getElementById("response").innerText = response;
+<script>
+    const questions = [
+        {
+            text: "If you could live with just one of these qualities, which would you choose?",
+            options: [
+                "Wisdom",
+                "Kindness",
+                "Confidence",
+                "Creativity"
+            ],
+            replies: [
+                "A thinker, a philosopher—would you trade warmth for insight?",
+                "A rare heart in a tough world. Never change.",
+                "The kind who walks into a room and owns it. Bold choice!",
+                "You’d paint the world in new colors, wouldn’t you?"
+            ]
+        },
+        {
+            text: "If your soul had a flavor, what would it be?",
+            options: [
+                "Dark chocolate – deep, a little bitter, but complex",
+                "Spicy chili – bold, intense, full of fire",
+                "Fresh mint – cool, refreshing, always surprising",
+                "Warm cinnamon – comforting, familiar, with a hint of mystery"
+            ],
+            replies: [
+                "Mysterious and intriguing. You leave people wanting more.",
+                "You don’t just enter a room—you ignite it.",
+                "A fresh breeze in a crowded space. Unexpected but unforgettable.",
+                "You feel like home, but with a little something extra."
+            ]
+        },
+        {
+            text: "Where would you time-travel first if you could?",
+            options: [
+                "The past – to relive or change something",
+                "The future – to see what becomes of you",
+                "An alternate universe – to see what ‘another you’ is like",
+                "Nowhere – the present is where the magic is"
+            ],
+            replies: [
+                "A heart with unfinished stories. Do you seek closure or change?",
+                "Curious, ambitious, maybe a little impatient. The best is yet to come.",
+                "A dreamer, always wondering 'what if'—or maybe a believer in destiny?",
+                "Rare. A soul content with the now. You’re exactly where you’re meant to be."
+            ]
         }
-    </script>
+    ];
+
+    let index = 0;
+    function displayNextQuestion() {
+        if (index < questions.length) {
+            let q = questions[index];
+            let container = document.getElementById('questions');
+            container.innerHTML = `<p>${q.text}</p>`;
+            q.options.forEach((option, i) => {
+                let btn = document.createElement('button');
+                btn.innerText = option;
+                btn.onclick = () => {
+                    container.innerHTML = `<p>${q.replies[i]}</p>`;
+                    setTimeout(displayNextQuestion, 4000);
+                };
+                container.appendChild(btn);
+            });
+            container.style.display = 'block';
+            index++;
+        } else {
+            document.getElementById('questions').innerHTML = '<p>That was fun! Hope this made your day a little more special.</p>';
+        }
+    }
+    setTimeout(displayNextQuestion, 5000);
+</script>
+
 </body>
 </html>
