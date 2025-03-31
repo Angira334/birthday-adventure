@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,9 +25,11 @@
             font-size: 2em;
             opacity: 0;
             transition: opacity 2s;
+            display: none;
         }
         .visible {
             opacity: 1;
+            display: block;
         }
         .option {
             background: rgba(255, 255, 255, 0.2);
@@ -61,7 +64,7 @@
     </audio>
     <div class="container">
         <img id="balloon" src="balloon.png" alt="Balloon">
-        <p class="message" id="intro">Welcome to a magical birthday journey...</p>
+        <p class="message visible" id="intro">Welcome to a magical birthday journey...</p>
         <p class="message" id="question1">If you could travel anywhere, where would you go?</p>
         <button class="option" onclick="nextStep(2)">Paris</button>
         <button class="option" onclick="nextStep(2)">Japan</button>
@@ -78,11 +81,14 @@
         document.getElementById("bg-music").play();
         function nextStep(next) {
             document.getElementById(`question${step}`).classList.remove('visible');
+            document.getElementById(`question${step}`).style.display = 'none';
             document.getElementById(`question${next}`).classList.add('visible');
+            document.getElementById(`question${next}`).style.display = 'block';
             step = next;
             if (step === 3) {
                 setTimeout(() => {
                     document.getElementById("wish").classList.add('visible');
+                    document.getElementById("wish").style.display = 'block';
                 }, 3000);
             }
         }
