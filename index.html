@@ -1,4 +1,5 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +22,6 @@
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.3);
-            animation: fadeIn 2s ease-in-out;
         }
         h1 {
             font-size: 3rem;
@@ -33,10 +33,9 @@
             font-size: 1.2rem;
             line-height: 1.5;
             color: #ddd;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out;
         }
         @keyframes glow {
             from { text-shadow: 0 0 10px gold, 0 0 20px gold; }
@@ -47,7 +46,25 @@
 <body>
     <div class="container">
         <h1>Happy Birthday!</h1>
-        <p>Today is all about celebrating you—your kindness, your depth, and the way you make life brighter just by being in it. You have a way of understanding people that’s rare, of making even the most ordinary moments feel special. I hope this year brings you all the joy, growth, and success you deserve. You mean more to the people around you than you realize, and I’m grateful to know you. Wishing you a day as amazing as you are!</p>
+        <p id="line1">Today is all about celebrating you—your kindness, your depth, and the way you make life brighter just by being in it.</p>
+        <p id="line2">You have a way of understanding people that’s rare, of making even the most ordinary moments feel special.</p>
+        <p id="line3">I hope this year brings you all the joy, growth, and success you deserve.</p>
+        <p id="line4">You mean more to the people around you than you realize, and I’m grateful to know you.</p>
+        <p id="line5">Wishing you a day as amazing as you are!</p>
     </div>
+    <script>
+        function showLine(id, delay) {
+            setTimeout(() => {
+                document.getElementById(id).style.opacity = "1";
+                document.getElementById(id).style.transform = "translateY(0)";
+            }, delay);
+        }
+        
+        showLine("line1", 5000);
+        showLine("line2", 10000);
+        showLine("line3", 15000);
+        showLine("line4", 20000);
+        showLine("line5", 25000);
+    </script>
 </body>
 </html>
