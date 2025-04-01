@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,6 +15,7 @@
             align-items: center;
             height: 100vh;
             text-align: center;
+            overflow: hidden;
         }
         .container {
             background: rgba(0, 0, 0, 0.7);
@@ -45,7 +45,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Happy Birthday!</h1>
+        <h1>Happy Birthday Nick!</h1>
         <p id="line1">Today is all about celebrating you—your kindness, your depth, and the way you make life brighter just by being in it.</p>
         <p id="line2">You have a way of understanding people that’s rare, of making even the most ordinary moments feel special.</p>
         <p id="line3">I hope this year brings you all the joy, growth, and success you deserve.</p>
@@ -58,13 +58,12 @@
                 document.getElementById(id).style.opacity = "1";
                 document.getElementById(id).style.transform = "translateY(0)";
             }, delay);
-        }
-        
-        showLine("line1", 5000);
-        showLine("line2", 10000);
-        showLine("line3", 15000);
-        showLine("line4", 20000);
-        showLine("line5", 25000);
-    </script>
+        }showLine("line1", 1000);
+    showLine("line2", 6000);
+    showLine("line3", 11000);
+    showLine("line4", 16000);
+    showLine("line5", 21000);
+</script>
+
 </body>
 </html>
